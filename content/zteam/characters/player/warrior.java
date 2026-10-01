@@ -11,7 +11,7 @@ public class warrior extends GameCharacter {
      * @throws IllegalArgumentException if the name is null or blank
      */
     public warrior (String name) {
-        super(name, 150, 25, 12);
+        super(name, 150, 25, 17);
     }
 
     /**

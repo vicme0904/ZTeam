@@ -1,6 +1,7 @@
 package zteam.console;
 
 import zteam.characters.GameCharacter;
+import zteam.characters.player.archer;
 import zteam.characters.player.warrior;
 
 /**
@@ -41,5 +42,14 @@ public class CharacterDemo {
         } catch (IllegalStateException exception) {
             System.out.println("Healing rejected: " + exception.getMessage());
         }
+
+        GameCharacter archer = new archer("Sniper man");
+        GameCharacter archerTarget = new archer("Someone far");
+
+        int doubleShotDamage = archer.useSpecialAbility(archerTarget);
+
+        System.out.println("Double shot damage: " + doubleShotDamage);
+        System.out.println("Archer target health: " + archerTarget.getCurrHealth());
+
     }
 }
