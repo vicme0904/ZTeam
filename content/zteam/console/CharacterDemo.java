@@ -2,6 +2,7 @@ package zteam.console;
 
 import zteam.characters.GameCharacter;
 import zteam.characters.player.*;
+import zteam.game.Party;
 
 /**
  * Demo to check if character attacks, heals and check health limits.
@@ -87,6 +88,21 @@ public class CharacterDemo {
         }
 
         System.out.println("Mana after rejected healing: " + priest.getCurrMana());
+
+        Party party = new Party();
+
+        party.addMember(archer);
+        party.addMember(lancer);
+        party.addMember(mage);
+        party.addMember(priest);
+
+        System.out.println("Party size: " + party.getSize());
+        System.out.println("Living members: " + party.getAliveMembers().size());
+
+        lancer.takeDamage(1000);
+
+        System.out.println("Living members after defeat: " + party.getAliveMembers().size());
+        System.out.println("Party defeated: " + party.isDefeated());
 
     }
 }
