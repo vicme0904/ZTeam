@@ -11,7 +11,7 @@ public class archer extends GameCharacter {
      * @throws IllegalArgumentException if the name is null or blank
      */
     public archer(String name){
-        super(name, 100, 30, 10);
+        super(name, 100, 20, 10);
     }
 
     /**
@@ -24,6 +24,16 @@ public class archer extends GameCharacter {
      */
     @Override
     public int useSpecialAbility(GameCharacter target) {
+        if (target == null) {
+            throw new IllegalArgumentException("The special ability must have a target.");
+        }
+        if (target == this) {
+            throw new IllegalArgumentException("Archer cannot attack itself.");
+        }
+        if (!isAlive()) {
+            throw new IllegalStateException( "Defeated characters cannot use abilities.");
+        }
+
         int totalDamage = attack(target);
 
         if (target.isAlive()) {

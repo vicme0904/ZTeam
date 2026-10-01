@@ -1,21 +1,21 @@
 package zteam.characters.player;
 import zteam.characters.GameCharacter;
 
-public class warrior extends GameCharacter {
+public class lancer extends GameCharacter {
 
-//Constructor
+    //Constructor
     /**
-     * Creates a warrior with fixed attributes and full health.
+     * Creates a lancer with fixed attributes and full health.
      *
-     * @param name the warrior's name
+     * @param name the archer's name
      * @throws IllegalArgumentException if the name is null or blank
      */
-    public warrior (String name) {
-        super(name, 150, 25, 17);
+    public lancer(String name){
+        super(name, 180, 23, 18);
     }
 
     /**
-     * Performs an attack with twice the base attack power.
+     * Performs an attack that ignores target's defense
      *
      * @param target the character receiving the attack
      * @return the health actually removed from the target
@@ -28,15 +28,15 @@ public class warrior extends GameCharacter {
             throw new IllegalArgumentException("The special ability must have a target.");
         }
         if (target == this) {
-            throw new IllegalArgumentException("Warrior cannot attack itself.");
+            throw new IllegalArgumentException("Lancer cannot attack itself." );
         }
-
         if (!isAlive()) {
-            throw new IllegalStateException("Defeated characters cannot use abilities.");
+            throw new IllegalStateException( "Defeated characters cannot use abilities.");
         }
+        int ignoreDefense = target.getDefense() / 2;
+        int specialDamage = getAttack() + ignoreDefense;
 
-        int powerAttack = getAttack() * 2;
-        return target.takeDamage(powerAttack);
+        return target.takeDamage(specialDamage);
     }
 }
 

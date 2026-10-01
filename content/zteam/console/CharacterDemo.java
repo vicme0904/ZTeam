@@ -1,8 +1,7 @@
 package zteam.console;
 
 import zteam.characters.GameCharacter;
-import zteam.characters.player.archer;
-import zteam.characters.player.warrior;
+import zteam.characters.player.*;
 
 /**
  * Demo to check if character attacks, heals and check health limits.
@@ -50,6 +49,44 @@ public class CharacterDemo {
 
         System.out.println("Double shot damage: " + doubleShotDamage);
         System.out.println("Archer target health: " + archerTarget.getCurrHealth());
+
+        GameCharacter lancer = new lancer("Big pointy stick");
+        GameCharacter lancerTarget = new lancer("Target");
+
+        int piercingDamage = lancer.useSpecialAbility(lancerTarget);
+
+        System.out.println("Piercing damage: " + piercingDamage);
+        System.out.println("Lancer target health: "
+                + lancerTarget.getCurrHealth());
+
+        wizard mage = new wizard("Studying Guide to Fireball");
+        GameCharacter mageTarget = new archer("Target");
+
+        int fireballDamage = mage.useSpecialAbility(mageTarget);
+
+        System.out.println("Fireball damage: " + fireballDamage);
+        System.out.println("Mage target health: " + mageTarget.getCurrHealth());
+        System.out.println("Remaining mana: " + mage.getCurrentMana());
+
+
+        priest priest = new priest("praying for us");
+        GameCharacter ally = new archer("archer down");
+
+        ally.takeDamage(50);
+
+        int restoredHealth = priest.useSpecialAbility(ally);
+
+        System.out.println("Health restored: " + restoredHealth);
+        System.out.println("Ally health: " + ally.getCurrHealth());
+        System.out.println("Priest mana: " + priest.getCurrMana());
+
+        try {
+            priest.useSpecialAbility(ally);
+        } catch (IllegalStateException exception) {
+            System.out.println("Priest healing rejected: " + exception.getMessage());
+        }
+
+        System.out.println("Mana after rejected healing: " + priest.getCurrMana());
 
     }
 }
