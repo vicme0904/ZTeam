@@ -2,8 +2,8 @@ package zteam.console;
 
 import zteam.characters.GameCharacter;
 import zteam.characters.player.*;
-import zteam.game.Party;
-
+import zteam.characters.enemies.*;
+import zteam.game.*;
 /**
  * Demo to check if character attacks, heals and check health limits.
  */
@@ -104,5 +104,29 @@ public class CharacterDemo {
         System.out.println("Living members after defeat: " + party.getAliveMembers().size());
         System.out.println("Party defeated: " + party.isDefeated());
 
+
+        Battle battle = new Battle(party);
+
+        battle.addEnemy(new werebear("Werebear da batalha"));
+        battle.addEnemy(new skeletonBase("Skeleton da batalha"));
+
+        System.out.println("Enemies: " + battle.getEnemies().size());
+        System.out.println("Living enemies: "
+                + battle.getAliveEnemies().size());
+
+        necromancer necromancer =
+                new necromancer("Necromancer", battle);
+        battle.addEnemy(necromancer);
+
+        System.out.println("Enemies before summon: "
+                + battle.getEnemies().size());
+
+        int summonedSkeletons = necromancer.useSpecialAbility(null);
+
+        System.out.println("Skeletons summoned: " + summonedSkeletons);
+        System.out.println("Enemies after summon: "
+                + battle.getEnemies().size());
+        System.out.println("Necromancer mana: "
+                + necromancer.getCurrentMana());
     }
 }

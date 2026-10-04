@@ -69,8 +69,26 @@ public class Battle {
         enemies.add(enemy);
     }
 
+    /**
+     * Getter for all enemies
+     * @return the enemies participating in battle
+     */
+    public List<GameCharacter>getEnemies(){
+        return List.copyOf(enemies);
+    }
 
+    /**
+     * Read-only getter of enimies alive
+     * @return the enemies that are still alive
+     */
+    public List<GameCharacter>getAliveEnemies(){
+        List<GameCharacter> aliveEnemies = new ArrayList<>();
+        for (GameCharacter enemy : enemies) {
+            if (enemy.isAlive()) {
+                aliveEnemies.add(enemy);
+            }
+        }
 
-
-
+        return List.copyOf(aliveEnemies);
+    }
 }

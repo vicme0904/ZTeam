@@ -156,7 +156,7 @@ public boolean isAlive(){
 
     /**
      * @param target the character affected by the ability
-     * @return the actual damage dealt or health restored
+     * @return the actual damage dealt or health restored or number of summons
      * @throws IllegalArgumentException if the target is invalid
      * @throws IllegalStateException if either character is defeated
      */
