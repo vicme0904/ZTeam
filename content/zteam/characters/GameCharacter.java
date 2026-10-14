@@ -70,6 +70,19 @@ public int getAttack(){
 }
 
 /**
+ * Gets the character's remaining mana.
+ * @return zero for characters without mana
+ */
+public int getCurrMana() {return 0;}
+
+    /**
+     * Gets the character's maximum mana.
+     * @return zero for characters without mana
+     */
+    public int getMaxMana() {return 0;}
+
+
+/**
  * @return true if current health is greater than zero;
  * false otherwise
  */
@@ -86,14 +99,10 @@ public boolean isAlive(){
      */
     public int takeDamage(int incomingDamage) {
         if (incomingDamage < 0) {
-            throw new IllegalArgumentException(
-                    "Damage cannot be negative."
-            );
+            throw new IllegalArgumentException("Damage cannot be negative.");
         }
         if (!isAlive()) {
-            throw new IllegalStateException(
-                    "The character is already defeated."
-            );
+            throw new IllegalStateException("The character is already defeated.");
         }
         int damageAfterDefense = Math.max(0, incomingDamage - defense);
         int actualDamage = Math.min(currHealth, damageAfterDefense);
@@ -137,19 +146,12 @@ public boolean isAlive(){
      */
     public int attack(GameCharacter target) {
         if (target == null) {
-            throw new IllegalArgumentException(
-                    "The attack must have a target."
-            );
+            throw new IllegalArgumentException("The attack must have a target.");
         }
         if (target == this) {
-            throw new IllegalArgumentException(
-                    "A character cannot attack itself."
-            );
+            throw new IllegalArgumentException("A character cannot attack itself.");
         }
-        if (!isAlive()) {
-            throw new IllegalStateException(
-                    "Defeated characters cannot attack."
-            );
+        if (!isAlive()) {throw new IllegalStateException("Defeated characters cannot attack.");
         }
         return target.takeDamage(attack);
     }
